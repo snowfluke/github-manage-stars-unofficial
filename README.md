@@ -41,29 +41,23 @@ If GitHub asks us to take this project down, **we will**. We would much rather G
 
 This project uses [uv](https://docs.astral.sh/uv/) for dependency management. Either install via uv or pip — both work because the project is a standard `pyproject.toml` package.
 
-### With uv (recommended)
+### From PyPI (easiest)
+
+```bash
+pip install github-manage-stars-unofficial
+# or
+uv tool install github-manage-stars-unofficial
+```
+
+Either way you get the `ghstars` command on your PATH. The PyPI distribution name is long for discoverability; the CLI binary stays short.
+
+### From source
 
 ```bash
 git clone https://github.com/snowfluke/github-manage-stars-unofficial.git
 cd github-manage-stars-unofficial
 uv sync
 uv run ghstars
-```
-
-Or install as a tool so `ghstars` is on your PATH globally:
-
-```bash
-uv tool install .
-ghstars
-```
-
-### With pip
-
-```bash
-git clone https://github.com/snowfluke/github-manage-stars-unofficial.git
-cd github-manage-stars-unofficial
-pip install -e .
-ghstars
 ```
 
 Requires Python 3.10+.

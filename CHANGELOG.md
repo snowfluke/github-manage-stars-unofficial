@@ -6,9 +6,18 @@ to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.1] — 2026-05-18
+
+### Changed
+- Renamed the PyPI distribution to `github-manage-stars-unofficial`. The
+  short name `ghstars` was already taken by an unrelated project. The CLI
+  binary, the Python import path, and the package internals are unchanged
+  — only the `pip install` name moves.
+
 ## [0.1.0] — 2026-05-18
 
-Initial public release.
+Initial public release. **Not published to PyPI** — the distribution name
+`ghstars` collided with an existing project. See 0.1.1.
 
 ### Added
 - Interactive CLI (`ghstars` with no args) and individual subcommands

@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "ghstars"
-version = "0.1.0"
+name = "github-manage-stars-unofficial"
+version = "0.1.1"
 description = "Interactive CLI for organising your GitHub starred repositories into lists via GitHub's unofficial UI endpoints."
 readme = "README.md"
 license = { file = "LICENSE" }
