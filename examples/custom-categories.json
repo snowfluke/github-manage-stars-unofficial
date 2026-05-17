@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Archived",
+    "description": "Repos marked archived — stale, consider unstar",
+    "patterns": []
+  },
+  {
+    "name": "My Daily Drivers",
+    "description": "Tools I actually use every day",
+    "patterns": ["\\bvscode\\b", "\\bzed\\b", "\\bneovim\\b"]
+  },
+  {
+    "name": "Rust",
+    "description": "Rust libraries and tools",
+    "patterns": [],
+    "language": "rust"
+  },
+  {
+    "name": "Read Later",
+    "description": "Awesome lists, tutorials, books",
+    "patterns": ["\\bawesome\\b", "\\btutorial\\b", "\\bbook\\b", "\\bcourse\\b"]
+  },
+  {
+    "name": "Other",
+    "description": "Repos that did not match any rule",
+    "patterns": []
+  }
+]

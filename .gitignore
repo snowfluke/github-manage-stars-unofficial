@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# Secrets — never commit credentials
+.session.json
+session.json
+cookies.json
+*.cookies
+.env
+.env.local
+
+# Local state (account-specific)
+state.json
+stars.jsonl
+stars-*.json
+plan.md
+assign.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Don't ignore example data
+!examples/state.example.json
+!examples/stars.example.jsonl

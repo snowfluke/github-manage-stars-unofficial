@@ -1,0 +1,65 @@
+name: release
+
+# Triggered when you publish a GitHub Release in the UI (or via `gh release create`).
+# Steps: install deps → run tests → uv build → uv publish to PyPI.
+#
+# Requires repository secret: PYPI_TOKEN  (https://pypi.org/help/#apitoken)
+
+on:
+  release:
+    types: [published]
+
+# Read-only token. PyPI publish uses PYPI_TOKEN (not GITHUB_TOKEN), so we never
+# need write access here.
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    # If you later set up a protected GitHub Environment named "pypi" with
+    # required reviewers, uncomment the next line to gate the publish step.
+    # environment: pypi
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.12
+
+      - name: Install dependencies
+        run: uv sync --dev
+
+      - name: Install pytest
+        run: uv pip install pytest
+
+      - name: Verify version matches the release tag
+        run: |
+          set -euo pipefail
+          tag="${GITHUB_REF_NAME#v}"
+          project_version=$(uv run python -c "import ghstars; print(ghstars.__version__)")
+          echo "release tag: $GITHUB_REF_NAME (stripped: $tag)"
+          echo "package version: $project_version"
+          if [ "$tag" != "$project_version" ]; then
+            echo "::error::Release tag ($tag) does not match ghstars.__version__ ($project_version)."
+            echo "Bump src/ghstars/__init__.py and pyproject.toml, then re-tag."
+            exit 1
+          fi
+
+      - name: Run tests
+        run: uv run pytest -q
+
+      - name: Build distributions
+        run: uv build
+
+      - name: List artifacts
+        run: ls -la dist/
+
+      - name: Publish to PyPI
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: uv publish
